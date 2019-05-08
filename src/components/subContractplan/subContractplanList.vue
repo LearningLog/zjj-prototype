@@ -14,8 +14,8 @@
         <el-input v-model="searchData.skuId" placeholder="请输入策划编号"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" @click="onSearch">查询</el-button>
-        <el-button type="primary" icon="el-icon-refresh" @click="reset">重置</el-button>
+        <el-button type="primary" icon="el-icon-search">查询</el-button>
+        <el-button type="primary" icon="el-icon-refresh">重置</el-button>
       </el-form-item>
     </el-form>
     <el-button type="primary" size="mini" @click="add" >新增分包策划</el-button>
@@ -85,7 +85,6 @@
         align="center"
         min-width="150"
         show-overflow-tooltip
-        :formatter="priceFormatter"
         label="合同额">
       </el-table-column>
       <el-table-column
@@ -94,7 +93,6 @@
         align="right"
         min-width="150"
         show-overflow-tooltip
-        :formatter="priceFormatter"
         label="预计合同额（万元）">
       </el-table-column>
       <el-table-column
@@ -115,20 +113,6 @@
         label="操作"
         align="center"
         width="160">
-        <template slot-scope="scope">
-          <el-button
-            type="primary"
-            size="mini"
-            @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-          <el-button
-            type="success"
-            size="mini"
-            @click="handleDetail(scope.$index, scope.row)">明细</el-button>
-          <!--<el-button-->
-          <!--type="primary"-->
-          <!--size="mini"-->
-          <!--@click="handlePublish(scope.$index, scope.row)">发布</el-button>-->
-        </template>
       </el-table-column>
     </el-table>
     <div class="page fr" v-if="total">
@@ -145,9 +129,6 @@
 </template>
 <script>
 export default {
-  created () {
-    this.initData()
-  },
   data () {
     return {
       searchData: { // 搜索数据
