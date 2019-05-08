@@ -45,8 +45,7 @@ export default {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-  }
-  .el-form-item .el-form-item__label {
-    width: 154px!important;
-  }
+  }.text .el-form-item .el-form-item__content {
+     width: 70%;
+   }
 </style>
