@@ -24,6 +24,9 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/subContractplanList">分包策划编制</el-menu-item>
+              <el-menu-item>分包策划审批</el-menu-item>
+              <el-menu-item>分包策划查询</el-menu-item>
+              <el-menu-item>分包策划台账</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

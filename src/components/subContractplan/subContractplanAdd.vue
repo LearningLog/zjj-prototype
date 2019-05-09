@@ -11,13 +11,13 @@
           <el-form-item label="项目信息" class="title2"></el-form-item>
           <el-row>
             <el-col :span="12">
-              <el-form-item label="策划名称">
+              <el-form-item label="项目名称">
                 <el-input v-model="product.aa"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="工程类型">
-                <el-select v-model="product.bb" placeholder="请选择工程类型" class="purchaseType" filterable>
+                <el-select v-model="product.bb" placeholder="请选择工程类型" class="purchaseType">
                   <el-option v-for="item in engineerTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
@@ -26,14 +26,14 @@
           <el-row>
             <el-col :span="12">
               <el-form-item label="项目所在地">
-                <el-select v-model="product.cc" placeholder="请选择所在地" class="purchaseType" filterable>
+                <el-select v-model="product.cc" placeholder="请选择所在地" class="purchaseType">
                   <el-option v-for="item in locationList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="项目类型">
-                <el-select v-model="product.dd" placeholder="请选择项目类型" class="projectType" filterable>
+                <el-select v-model="product.dd" placeholder="请选择项目类型" class="projectType">
                   <el-option v-for="item in projectTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
@@ -41,6 +41,7 @@
           </el-row>
           <el-row class="text">
             <el-col :span="24">
+              <i class="el-icon-question summary" @click="summary"></i>
               <el-form-item label="项目概述">
                 <el-input type="textarea" v-model="product.ee"></el-input>
               </el-form-item>
@@ -48,6 +49,7 @@
           </el-row>
           <el-row class="text">
             <el-col :span="24">
+              <i class="el-icon-question quantities" @click="quantities"></i>
               <el-form-item label="主要工程量">
                 <el-input type="textarea" v-model="product.ff"></el-input>
               </el-form-item>
@@ -57,7 +59,7 @@
           <el-row>
             <el-col :span="12">
               <el-form-item label="币种">
-                <el-select v-model="product.moneyType" placeholder="请选择币种" class="projectType" filterable>
+                <el-select v-model="product.moneyType" placeholder="请选择币种" class="projectType">
                   <el-option v-for="item in moneyTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
@@ -84,7 +86,7 @@
           <el-row>
             <el-col :span="12">
               <el-form-item label="有无有预付款">
-                <el-select v-model="product.advanceCharge" placeholder="请选择" class="purchaseType" filterable>
+                <el-select v-model="product.advanceCharge" placeholder="请选择" class="purchaseType">
                   <el-option v-for="item in advanceChargeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
@@ -122,14 +124,14 @@
           <el-row>
             <el-col :span="12">
               <el-form-item label="编制部门">
-                <el-select v-model="product.kk" placeholder="请选择编制部门" class="purchaseType" filterable>
+                <el-select v-model="product.kk" placeholder="请选择编制部门" class="purchaseType">
                   <el-option v-for="item in EstablishmentDepartmentList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="编制单位">
-                <el-select v-model="product.ll" placeholder="请选择编制单位" class="purchaseType" filterable>
+                <el-select v-model="product.ll" placeholder="请选择编制单位" class="purchaseType">
                   <el-option v-for="item in establishUnitList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
@@ -138,22 +140,22 @@
           <el-row>
             <!--<el-col :span="12">-->
               <!--<el-form-item label="采购组织单位">-->
-                <!--<el-select v-model="product.c" placeholder="请选择采购组织单位" class="purchaseType" filterable>-->
+                <!--<el-select v-model="product.c" placeholder="请选择采购组织单位" class="purchaseType">-->
                   <!--<el-option v-for="item in unitList" :label="item.name" :value="item.id" :key="item.id"></el-option>-->
                 <!--</el-select>-->
               <!--</el-form-item>-->
             <!--</el-col>-->
             <el-col :span="12">
-              <el-form-item label="需求单位">
-                <el-select v-model="product.mm" placeholder="请选择需求单位" class="purchaseType" filterable>
-                  <el-option v-for="item in demandUnitList" :label="item.name" :value="item.id" :key="item.id"></el-option>
+              <el-form-item label="需求部门">
+                <el-select v-model="product.nn" placeholder="请选择需求单位" class="purchaseType">
+                  <el-option v-for="item in departmentList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="需求部门">
-                <el-select v-model="product.nn" placeholder="请选择需求单位" class="purchaseType" filterable>
-                  <el-option v-for="item in departmentList" :label="item.name" :value="item.id" :key="item.id"></el-option>
+              <el-form-item label="需求单位">
+                <el-select v-model="product.mm" placeholder="请选择需求单位" class="purchaseType">
+                  <el-option v-for="item in demandUnitList" :label="item.name" :value="item.id" :key="item.id"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -198,14 +200,14 @@
           <!--<el-row>-->
             <!--<el-col :span="12">-->
               <!--<el-form-item label="采购方式">-->
-                <!--<el-select v-model="product.ee" placeholder="请选择采购方式" class="purchaseType" filterable>-->
+                <!--<el-select v-model="product.ee" placeholder="请选择采购方式" class="purchaseType">-->
                   <!--<el-option v-for="item in purchaseTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>-->
                 <!--</el-select>-->
               <!--</el-form-item>-->
             <!--</el-col>-->
             <!--<el-col :span="12">-->
-              <!--<el-form-item label="评标方式">-->
-                <!--<el-select v-model="product.ff" placeholder="请选择评标方式" class="purchaseType" filterable>-->
+              <!--<el-form-item label="评标办法">-->
+                <!--<el-select v-model="product.ff" placeholder="请选择评标办法" class="purchaseType">-->
                   <!--<el-option v-for="item in evalBidTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>-->
                 <!--</el-select>-->
               <!--</el-form-item>-->
@@ -214,7 +216,7 @@
           <!--<el-row>-->
             <!--<el-col :span="12">-->
               <!--<el-form-item label="有无有合作投标">-->
-                <!--<el-select v-model="product.gg" placeholder="请选择" class="purchaseType" filterable>-->
+                <!--<el-select v-model="product.gg" placeholder="请选择" class="purchaseType">-->
                   <!--<el-option v-for="item in isCooperateBidList" :label="item.name" :value="item.id" :key="item.id"></el-option>-->
                 <!--</el-select>-->
               <!--</el-form-item>-->
@@ -223,7 +225,7 @@
           <!--<el-row>-->
             <!--<el-col :span="12">-->
               <!--<el-form-item label="有无备案">-->
-                <!--<el-select v-model="product.kk" placeholder="请选择" class="purchaseType" filterable>-->
+                <!--<el-select v-model="product.kk" placeholder="请选择" class="purchaseType">-->
                   <!--<el-option v-for="item in isRecordList" :label="item.name" :value="item.id" :key="item.id"></el-option>-->
                 <!--</el-select>-->
               <!--</el-form-item>-->
@@ -237,7 +239,7 @@
           <!--<el-row>-->
             <!--<el-col :span="12">-->
               <!--<el-form-item label="是否进行材料调差">-->
-                <!--<el-select v-model="product.isAdjustment" placeholder="请选择" class="purchaseType" filterable>-->
+                <!--<el-select v-model="product.isAdjustment" placeholder="请选择" class="purchaseType">-->
                   <!--<el-option v-for="item in isAdjustmentList" :label="item.name" :value="item.id" :key="item.id"></el-option>-->
                 <!--</el-select>-->
               <!--</el-form-item>-->
@@ -322,7 +324,7 @@
             align="center"
             min-width="130">
             <template slot-scope="scope">
-              <el-select v-model="scope.row.subpackageType" placeholder="请选择" class="subpackageType" filterable>
+              <el-select v-model="scope.row.subpackageType" placeholder="请选择" class="subpackageType">
                 <el-option v-for="item in subpackageTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
               </el-select>
             </template>
@@ -333,7 +335,7 @@
             align="center"
             min-width="110">
             <template slot-scope="scope">
-              <el-select v-model="scope.row.packageType" placeholder="请选择" class="subpackageType" filterable>
+              <el-select v-model="scope.row.packageType" placeholder="请选择" class="subpackageType">
                 <el-option v-for="item in packageTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
               </el-select>
             </template>
@@ -363,18 +365,18 @@
             align="center"
             min-width="130">
             <template slot-scope="scope">
-              <el-select v-model="scope.row.purchaseType" placeholder="请选择" class="subpackageType" filterable>
+              <el-select v-model="scope.row.purchaseType" placeholder="请选择" class="subpackageType">
                 <el-option v-for="item in purchaseTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column
             prop="evalBidType"
-            label="评标方式"
+            label="评标办法"
             align="center"
             min-width="150">
             <template slot-scope="scope">
-              <el-select v-model="scope.row.evalBidType" placeholder="请选择" class="subpackageType" filterable>
+              <el-select v-model="scope.row.evalBidType" placeholder="请选择" class="subpackageType">
                 <el-option v-for="item in evalBidTypeList" :label="item.name" :value="item.id" :key="item.id"></el-option>
               </el-select>
             </template>
@@ -383,7 +385,7 @@
             prop="time1"
             align="center"
             min-width="160"
-            label="预计招标时间">
+            label="拟招标时间">
             <template slot-scope="scope">
               <el-date-picker
                 v-model="scope.row.time1"
@@ -396,7 +398,7 @@
             prop="time2"
             align="center"
             min-width="160"
-            label="预计进场时间">
+            label="拟进场时间">
             <template slot-scope="scope">
               <el-date-picker
                 v-model="scope.row.time2"
@@ -408,10 +410,10 @@
           <el-table-column
             prop="quantities"
             align="center"
-            min-width="100"
+            min-width="200"
             label="主要工程量">
             <template slot-scope="scope">
-              <el-input v-model="scope.row.quantities" placeholder=""/>
+              <el-input type="textarea" :rows="2" v-model="scope.row.quantities" placeholder=""/>
             </template>
           </el-table-column>
         </el-table>
@@ -497,6 +499,16 @@ export default {
   methods: {
     add () {
       this.planList.push({})
+    },
+    summary () {
+      this.$alert('项目起止桩号为K101+514—K12+354（起点位于……，终点位于……，途径……），线路长 120    公里。发包方为   四公局十公司     ；工期以中标通知书发布日起计 2年，工程按**标准设计，双向**车道，设计时速230km/h。', '项目概述', {
+        confirmButtonText: '确定'
+      })
+    },
+    quantities () {
+      this.$alert('路基挖方 10   万m3、路基填方 10   万m3，路面底基层  10  万m2、路面基层  10  万m2、水泥混凝土面层  10  万m2、沥青混凝土下面层  10  万m2、沥青混凝土中面层   10 万m2、沥青混凝土上面层  10  万m2，大桥  10  m/座、中桥  10  m/座、小桥  10  m/座、涵洞  10  m/座，隧道 10   m/座，……。', '主要工程量', {
+        confirmButtonText: '确定'
+      })
     }
   }
 }
@@ -516,5 +528,19 @@ export default {
   }
   .text .el-form-item {
     width: 100%;
+  }
+  .summary {
+    position: absolute;
+    top: 8px;
+    left: 70px;
+    color: #d93025;
+    font-size: 14px;
+  }
+  .quantities {
+    position: absolute;
+    top: 8px;
+    left: 56px;
+    color: #d93025;
+    font-size: 14px;
   }
 </style>

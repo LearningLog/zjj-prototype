@@ -18,8 +18,10 @@
         <el-button type="primary" icon="el-icon-refresh">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-button type="primary" size="mini" @click="add" >新增分包策划</el-button>
-    <el-button type="danger" size="mini" @click="remove" >删除</el-button>
+    <el-button type="primary" size="mini" @click="add" >新增</el-button>
+    <el-button type="primary" size="mini">修改</el-button>
+    <el-button type="danger" size="mini">删除</el-button>
+    <el-button type="primary" size="mini" >提交审批</el-button>
     <!--表格-->
     <el-table
       :data="tableList"
@@ -41,20 +43,23 @@
         prop="objectId"
         label="策划编号"
         align="center"
-        min-width="120"
+        min-width="100"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
         prop="objectName"
-        align="center"
-        min-width="150"
+        header-align="center"
+        min-width="200"
         show-overflow-tooltip
         label="项目名称">
+        <template slot-scope="scope">
+          <span class="objectName" @click="detail" style="margin-left: 10px">{{ scope.row.objectName }}</span>
+        </template>
       </el-table-column>
       <el-table-column
         prop="engineerType"
         align="center"
-        min-width="150"
+        min-width="110"
         show-overflow-tooltip
         label="工程类型">
       </el-table-column>
@@ -63,29 +68,31 @@
         label="合同额（万元）">
         <el-table-column
           prop="contractValue1"
-          align="center"
+          header-align="center"
+          align="right"
           min-width="150"
           show-overflow-tooltip
           label="主合同额">
         </el-table-column>
         <el-table-column
           prop="contractValue2"
-          align="center"
+          header-align="center"
+          align="right"
           min-width="150"
           show-overflow-tooltip
-          label="拟合同额">
+          label="拟分包额">
         </el-table-column>
       </el-table-column>
       <el-table-column
         prop="unit"
-        align="center"
+        header-align="center"
         min-width="100"
         show-overflow-tooltip
         label="编制单位">
       </el-table-column>
       <el-table-column
         prop="department"
-        align="center"
+        header-align="center"
         min-width="100"
         show-overflow-tooltip
         label="编制部门">
@@ -93,7 +100,7 @@
       <el-table-column
         prop="createTime"
         align="center"
-        min-width="160"
+        min-width="110"
         label="编制时间">
       </el-table-column>
     </el-table>
@@ -121,7 +128,7 @@ export default {
       pageNum: 1, // 当前第几页
       total: 2, // 总页数
       currentSize: 2, // 当前页数据条数
-      tableList: [{objectId: '1', objectName: '雄安公路', engineerType: '公路', contractValue1: 66666.66, contractValue2: 99999.99, unit: '二公司', department: '合同部', createTime: '2019-05-01'}, {objectId: '2', objectName: '雄安铁路', engineerType: '铁路', contractValue1: 66666.66, contractValue2: 99999.99, unit: '二公司', department: '合同部', createTime: '2019-05-01'}] // 列表
+      tableList: [{objectId: '1', objectName: '雄安公路', engineerType: '公路', contractValue1: '99,999.66', contractValue2: '66,666.99', unit: '二公司', department: '合同部', createTime: '2019-05-01'}, {objectId: '2', objectName: '雄安铁路', engineerType: '铁路', contractValue1: '99,998.66', contractValue2: '66,666.99', unit: '二公司', department: '合同部', createTime: '2019-05-01'}] // 列表
     }
   },
   methods: {
@@ -129,6 +136,11 @@ export default {
     add () {
       // 到新增页面
       this.$router.push({path: '/subContractplanAdd'})
+    },
+    // 查看详情
+    detail () {
+      // 到详情页面
+      this.$router.push({path: '/subContractplanDetail'})
     },
     // 处理分页
     handleSizeChange (val) {
@@ -152,5 +164,10 @@ export default {
   }
   .searchData {
     margin-top: 10px;
+  }
+  .objectName {
+    color: #3a8ee6;
+    text-decoration-line: underline;
+    cursor: pointer;
   }
 </style>

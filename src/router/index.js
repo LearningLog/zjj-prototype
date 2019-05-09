@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Main from '@/components/Main'
 import subContractplanList from '@/components/subContractplan/subContractplanList'
 import subContractplanAdd from '@/components/subContractplan/subContractplanAdd'
+import subContractplanDetail from '@/components/subContractplan/subContractplanDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -28,7 +29,8 @@ export default new Router({
       component: Home,
       children: [
         {path: '/subContractplanList', component: subContractplanList, name: 'subContractplanList'},
-        {path: '/subContractplanAdd', component: subContractplanAdd, name: 'subContractplanAdd'}
+        {path: '/subContractplanAdd', component: subContractplanAdd, name: 'subContractplanAdd'},
+        {path: '/subContractplanDetail', component: subContractplanDetail, name: 'subContractplanDetail'}
       ]
     },
     {
