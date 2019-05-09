@@ -304,10 +304,10 @@
           style="width: 100%"
           class="subpackagelist">
           <el-table-column
-            type="index"
-            prop="number"
             label="序号"
-            align="center">
+            type="index"
+            align="center"
+            width="50">
           </el-table-column>
           <el-table-column
             prop="packageName"
@@ -429,10 +429,10 @@
         'border-bottom': '1px rgb(103, 194, 58) solid'}"
           style="width: 100%">
           <el-table-column
-            type="index"
-            rop="skuId"
             label="序号"
-            align="center">
+            type="index"
+            align="center"
+            width="50">
           </el-table-column>
           <el-table-column
             prop="skuId"

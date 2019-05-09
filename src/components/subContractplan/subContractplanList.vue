@@ -7,8 +7,8 @@
     </el-breadcrumb>
     <!--搜索-->
     <el-form :inline="true" size="mini" class="searchData">
-      <el-form-item label="策划名称:">
-        <el-input v-model="searchData.skuName" placeholder="请输入策划名称"></el-input>
+      <el-form-item label="项目名称:">
+        <el-input v-model="searchData.skuName" placeholder="请输入项目名称"></el-input>
       </el-form-item>
       <el-form-item label="策划编号:">
         <el-input v-model="searchData.skuId" placeholder="请输入策划编号"></el-input>
@@ -33,11 +33,10 @@
         'border-bottom': '1px rgb(103, 194, 58) solid'}"
       style="width: 100%">
       <el-table-column
-        type="index"
-        prop="number"
         label="序号"
-        width="60"
-        align="center">
+        type="index"
+        align="center"
+        width="50">
       </el-table-column>
       <el-table-column
         prop="objectId"
@@ -52,9 +51,9 @@
         min-width="200"
         show-overflow-tooltip
         label="项目名称">
-        <template slot-scope="scope">
-          <span class="objectName" @click="detail" style="margin-left: 10px">{{ scope.row.objectName }}</span>
-        </template>
+        <!--<template slot-scope="scope">-->
+          <!--<span class="objectName" @click="detail" style="margin-left: 10px">{{ scope.row.objectName }}</span>-->
+        <!--</template>-->
       </el-table-column>
       <el-table-column
         prop="engineerType"
