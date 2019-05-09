@@ -22,97 +22,79 @@
     <el-button type="danger" size="mini" @click="remove" >删除</el-button>
     <!--表格-->
     <el-table
-      :data="productList"
+      :data="tableList"
       stripe
       border
       :header-cell-style="{
         'background-color': '#fafafa',
         'color': 'rgb(103, 194, 58)',
         'border-bottom': '1px rgb(103, 194, 58) solid'}"
-      ref="checkedList"
-      @selection-change="handleSelectionChange"
       style="width: 100%">
-      <el-table-column
-        fixed="left"
-        type="selection"
-        label="选择"
-        align="center"
-        width="40">
-      </el-table-column>
       <el-table-column
         type="index"
         prop="number"
         label="序号"
+        width="60"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="skuId"
+        prop="objectId"
         label="策划编号"
         align="center"
         min-width="120"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
-        prop="skuName"
+        prop="objectName"
         align="center"
         min-width="150"
         show-overflow-tooltip
-        label="策划名称">
+        label="项目名称">
       </el-table-column>
       <el-table-column
-        prop="brand"
+        prop="engineerType"
         align="center"
         min-width="150"
-        show-overflow-tooltip
-        label="项目类型">
-      </el-table-column>
-      <el-table-column
-        prop="saleProperty"
-        align="center"
-        min-width="100"
         show-overflow-tooltip
         label="工程类型">
       </el-table-column>
       <el-table-column
-        prop="model"
         align="center"
-        min-width="100"
-        show-overflow-tooltip
-        label="评标方式">
+        label="合同额（万元）">
+        <el-table-column
+          prop="contractValue1"
+          align="center"
+          min-width="150"
+          show-overflow-tooltip
+          label="主合同额">
+        </el-table-column>
+        <el-table-column
+          prop="contractValue2"
+          align="center"
+          min-width="150"
+          show-overflow-tooltip
+          label="拟合同额">
+        </el-table-column>
       </el-table-column>
       <el-table-column
-        prop="manufacturerName"
-        align="center"
-        min-width="150"
-        show-overflow-tooltip
-        label="合同额">
-      </el-table-column>
-      <el-table-column
-        prop="originalPrice"
-        header-align="center"
-        align="right"
-        min-width="150"
-        show-overflow-tooltip
-        label="预计合同额（万元）">
-      </el-table-column>
-      <el-table-column
-        prop="model"
+        prop="unit"
         align="center"
         min-width="100"
         show-overflow-tooltip
         label="编制单位">
       </el-table-column>
       <el-table-column
+        prop="department"
+        align="center"
+        min-width="100"
+        show-overflow-tooltip
+        label="编制部门">
+      </el-table-column>
+      <el-table-column
         prop="createTime"
         align="center"
         min-width="160"
         label="编制时间">
-      </el-table-column>
-      <el-table-column
-        fixed="right"
-        label="操作"
-        align="center"
-        width="160">
       </el-table-column>
     </el-table>
     <div class="page fr" v-if="total">
@@ -137,10 +119,9 @@ export default {
       },
       pageSize: 10, // 每页条数
       pageNum: 1, // 当前第几页
-      total: 0, // 总页数
-      currentSize: 0, // 当前页数据条数
-      productList: [], // 产品列表
-      checkedList: [] // CheckBox选择的数据
+      total: 2, // 总页数
+      currentSize: 2, // 当前页数据条数
+      tableList: [{objectId: '1', objectName: '雄安公路', engineerType: '公路', contractValue1: 66666.66, contractValue2: 99999.99, unit: '二公司', department: '合同部', createTime: '2019-05-01'}, {objectId: '2', objectName: '雄安铁路', engineerType: '铁路', contractValue1: 66666.66, contractValue2: 99999.99, unit: '二公司', department: '合同部', createTime: '2019-05-01'}] // 列表
     }
   },
   methods: {
@@ -148,39 +129,6 @@ export default {
     add () {
       // 到新增页面
       this.$router.push({path: '/subContractplanAdd'})
-    },
-    // 删除
-    remove () {
-      if (this.checkedList.length === 0) {
-        this.$message({
-          message: '请选择至少一项产品记录！',
-          type: 'warning'
-        })
-        return false
-      } else {
-        this.$confirm('确认删除吗吗?', '删除提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => { // 点击确认执行 resolve 函数
-          //  删除
-        }).catch(() => {
-          // 点击取消的处理
-        })
-      }
-    },
-    // 选中数据
-    handleSelectionChange (row) {
-      this.checkedList = row
-    },
-    // 修改
-    handleEdit (index, row) {
-      // 到编辑页面
-      this.$router.push({path: '/commodityEdit', query: {skuId: row.skuId}})
-    },
-    // 单价、数量格式化
-    priceFormatter (row, column, cellValue, index) {
-      return this.$accounting.format((cellValue / 100), '2')
     },
     // 处理分页
     handleSizeChange (val) {

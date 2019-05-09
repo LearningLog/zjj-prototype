@@ -46,6 +46,14 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }.text .el-form-item .el-form-item__content {
-     width: 70%;
+     width: 68.6%;
    }
+  .title2 {
+    width: 100%;
+    background-color: #E9EEF3;
+  }
+  .title2 .el-form-item__label {
+    font-size: 16px!important;
+    font-weight: bold;
+  }
 </style>
