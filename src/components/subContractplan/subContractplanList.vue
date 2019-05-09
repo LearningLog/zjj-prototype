@@ -51,9 +51,9 @@
         min-width="200"
         show-overflow-tooltip
         label="项目名称">
-        <!--<template slot-scope="scope">-->
-          <!--<span class="objectName" @click="detail" style="margin-left: 10px">{{ scope.row.objectName }}</span>-->
-        <!--</template>-->
+        <template slot-scope="scope">
+          <el-link class="objectName" type="primary" @click="detail">{{ scope.row.objectName }}</el-link>
+        </template>
       </el-table-column>
       <el-table-column
         prop="engineerType"
