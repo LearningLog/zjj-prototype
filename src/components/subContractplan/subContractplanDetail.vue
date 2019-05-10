@@ -569,7 +569,7 @@ export default {
       this.planList.push({})
     },
     getParams () {
-      this.isApproval = this.$router.currentRoute.params.isApproval === 1 ? 1 : false
+      this.isApproval = this.$router.currentRoute.params.isApproval === "1" ? 1 : false
       console.log(this.$router.currentRoute.params.isApproval)
     },
     goBack () {
