@@ -6,6 +6,7 @@ import subContractplanList from '@/components/subContractplan/subContractplanLis
 import subContractplanAdd from '@/components/subContractplan/subContractplanAdd'
 import subContractplanDetail from '@/components/subContractplan/subContractplanDetail'
 import subContractplanApproval from '@/components/subContractplan/subContractplanApproval'
+import subContractplanAccount from '@/components/subContractplan/subContractplanAccount'
 Vue.use(Router)
 
 export default new Router({
@@ -32,7 +33,8 @@ export default new Router({
         {path: '/subContractplanList', component: subContractplanList, name: 'subContractplanList'},
         {path: '/subContractplanAdd', component: subContractplanAdd, name: 'subContractplanAdd'},
         {path: '/subContractplanDetail/:isApproval', component: subContractplanDetail, name: 'subContractplanDetail'},
-        {path: '/subContractplanApproval', component: subContractplanApproval, name: 'subContractplanApproval'}
+        {path: '/subContractplanApproval', component: subContractplanApproval, name: 'subContractplanApproval'},
+        {path: '/subContractplanAccount', component: subContractplanApproval, name: 'subContractplanAccount'}
       ]
     },
     {
