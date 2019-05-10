@@ -532,7 +532,7 @@
 export default {
   data () {
     return {
-      isApproval:false,
+      isApproval: false,
       product: {
         moneyType: 1,
         exchangeRate1: '1.0000',
@@ -569,7 +569,7 @@ export default {
       this.planList.push({})
     },
     getParams () {
-      this.isApproval = this.$router.currentRoute.params.isApproval=='1'?true : false
+      this.isApproval = this.$router.currentRoute.params.isApproval === 1 ? 1 : false
       console.log(this.$router.currentRoute.params.isApproval)
     },
     goBack () {

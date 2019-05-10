@@ -36,7 +36,6 @@ export default new Router({
         {path: '/subContractplanDetail/:isApproval', component: subContractplanDetail, name: 'subContractplanDetail'},
         {path: '/subContractplanApproval', component: subContractplanApproval, name: 'subContractplanApproval'},
         {path: '/subContractplanAccount', component: subContractplanAccount, name: 'subContractplanAccount'},
-        {path: '/subContractplanDetail', component: subContractplanDetail, name: 'subContractplanDetail'},
         {path: '/subContractplanQueryList', component: subContractplanQueryList, name: 'subContractplanQueryList'}
       ]
     },
