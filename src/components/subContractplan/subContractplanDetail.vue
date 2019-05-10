@@ -522,7 +522,7 @@
         </div>
       </el-tab-pane>
     </el-tabs>
-    <div style="text-align: center" v-if="isApproval">
+    <div class="operfixed" v-if="isApproval">
       <el-button type="primary" size="mini" >同意</el-button>
       <el-button type="primary" size="mini" >退回</el-button>
     </div>
