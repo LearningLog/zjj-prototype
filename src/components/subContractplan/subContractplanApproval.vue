@@ -18,11 +18,6 @@
         <el-button type="primary" icon="el-icon-refresh">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-button type="primary" size="mini" @click="add" >新增</el-button>
-    <el-button type="primary" size="mini">修改</el-button>
-    <el-button type="danger" size="mini">删除</el-button>
-    <el-button type="danger" size="mini">变更</el-button>
-    <el-button type="primary" size="mini" >提交审批</el-button>
     <!--表格-->
     <el-table
       :data="tableList"
@@ -53,7 +48,7 @@
         show-overflow-tooltip
         label="项目名称">
         <template slot-scope="scope">
-          <el-link class="objectName" type="primary" @click="detail">{{ scope.row.objectName }}</el-link>
+          <el-link class="objectName" type="primary" @click="detail(1)">{{ scope.row.objectName }}</el-link>
         </template>
       </el-table-column>
       <el-table-column
@@ -132,15 +127,13 @@ export default {
     }
   },
   methods: {
-    // 添加
-    add () {
-      // 到新增页面
-      this.$router.push({path: '/subContractplanAdd'})
-    },
     // 查看详情
-    detail () {
+    detail (isApproval) {
+      debugger
       // 到详情页面
-      this.$router.push({path: `/subContractplanDetail/0`})
+      this.$router.push({
+        path: `/subContractplanDetail/${isApproval}`
+      })
     },
     // 处理分页
     handleSizeChange (val) {

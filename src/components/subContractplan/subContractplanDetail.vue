@@ -522,15 +522,17 @@
         </div>
       </el-tab-pane>
     </el-tabs>
-    <!--<div class="operfixed">-->
-      <!--<el-button type="primary" size="small" @click="goBack">返回</el-button>-->
-    <!--</div>-->
+    <div style="text-align: center" v-if="isApproval">
+      <el-button type="primary" size="mini" >同意</el-button>
+      <el-button type="primary" size="mini" >退回</el-button>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
+      isApproval:false,
       product: {
         moneyType: 1,
         exchangeRate1: '1.0000',
@@ -559,9 +561,16 @@ export default {
       attachList: []
     }
   },
+  created () {
+    this.getParams()
+  },
   methods: {
     add () {
       this.planList.push({})
+    },
+    getParams () {
+      this.isApproval = this.$router.currentRoute.params.isApproval=='1'?true : false
+      console.log(this.$router.currentRoute.params.isApproval)
     },
     goBack () {
       history.go(-1)
