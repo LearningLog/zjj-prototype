@@ -459,8 +459,8 @@
       </el-tab-pane>
     </el-tabs>
     <div class="operfixed">
-      <el-button type="primary" size="small">保存</el-button>
-      <el-button type="warning" size="small">提交</el-button>
+      <el-button type="primary" size="small" @click="save">保存</el-button>
+      <el-button type="warning" size="small" @click="submit">提交</el-button>
     </div>
   </div>
 </template>
@@ -497,6 +497,20 @@ export default {
     }
   },
   methods: {
+    save () {
+      this.$message({
+        message: '保存成功！',
+        type: 'success'
+      })
+      this.$router.push({path: '/subContractplanList'})
+    },
+    submit () {
+      this.$message({
+        message: '提交成功！',
+        type: 'success'
+      })
+      this.$router.push({path: '/subContractplanList'})
+    },
     add () {
       this.planList.push({})
     },

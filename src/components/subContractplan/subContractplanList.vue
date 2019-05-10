@@ -21,6 +21,7 @@
     <el-button type="primary" size="mini" @click="add" >新增</el-button>
     <el-button type="primary" size="mini">修改</el-button>
     <el-button type="danger" size="mini">删除</el-button>
+    <el-button type="danger" size="mini">变更</el-button>
     <el-button type="primary" size="mini" >提交审批</el-button>
     <!--表格-->
     <el-table
