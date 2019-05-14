@@ -522,10 +522,10 @@
         </div>
       </el-tab-pane>
     </el-tabs>
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+    <el-dialog title="分包策划审批" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="审批意见" :label-width="formLabelWidth">
-          <el-input type="textarea" v-model="form.desc"></el-input>
+          <el-input type="textarea" :rows="6" v-model="form.desc"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -548,7 +548,7 @@ export default {
       form: {
         desc: ''
       },
-      formLabelWidth: '120px',
+      formLabelWidth: '80px',
       isApproval: false,
       product: {
         moneyType: 1,
