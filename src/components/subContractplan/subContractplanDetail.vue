@@ -522,9 +522,21 @@
         </div>
       </el-tab-pane>
     </el-tabs>
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="审批意见" :label-width="formLabelWidth">
+          <el-input type="textarea" v-model="form.desc"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisibleFun">确 定</el-button>
+      </div>
+    </el-dialog>
+
     <div class="operfixed" v-if="isApproval">
-      <el-button type="primary" size="mini" >同意</el-button>
-      <el-button type="primary" size="mini" >退回</el-button>
+      <el-button type="primary" size="mini"  @click="dialogFormVisible = true">同意</el-button>
+      <el-button type="primary" size="mini"  @click="dialogFormVisible = true">退回</el-button>
     </div>
   </div>
 </template>
@@ -532,6 +544,11 @@
 export default {
   data () {
     return {
+      dialogFormVisible: false,
+      form: {
+        desc: ''
+      },
+      formLabelWidth: '120px',
       isApproval: false,
       product: {
         moneyType: 1,
@@ -573,6 +590,9 @@ export default {
     },
     goBack () {
       history.go(-1)
+    },
+    dialogFormVisibleFun () {
+      this.$router.push({path: '/subContractplanApproval'})
     }
   }
 }
