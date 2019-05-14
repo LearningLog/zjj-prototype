@@ -110,7 +110,7 @@
       </el-table-column>
       <el-table-column
         prop="moneyType"
-        header-align="center"
+        align="center"
         min-width="100"
         show-overflow-tooltip
         label="币种">

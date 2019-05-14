@@ -135,7 +135,7 @@ export default {
     // 查看详情
     detail () {
       // 到详情页面
-      this.$router.push({path: '/subContractplanDetail'})
+      this.$router.push({path: '/subContractplanDetail/0'})
     },
     // 处理分页
     handleSizeChange (val) {
