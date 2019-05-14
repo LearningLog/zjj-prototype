@@ -23,6 +23,7 @@
       :data="tableList"
       stripe
       border
+      :span-method="arraySpanMethod"
       :header-cell-style="{
         'background-color': '#fafafa',
         'color': 'rgb(103, 194, 58)',
@@ -38,7 +39,7 @@
         prop="objectId"
         label="策划编号"
         align="center"
-        min-width="100"
+        min-width="80"
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
@@ -48,19 +49,40 @@
         show-overflow-tooltip
         label="项目名称">
         <template slot-scope="scope">
-          <el-link class="objectName" type="primary" @click="detail(1)">{{ scope.row.objectName }}</el-link>
+          <el-link class="objectName" type="primary" @click="detail">{{ scope.row.objectName }}</el-link>
         </template>
       </el-table-column>
       <el-table-column
-        prop="engineerType"
+        prop="PackageNo"
+        label="包件编号"
+        align="center"
+        min-width="120"
+        show-overflow-tooltip>
+      </el-table-column>
+      <el-table-column
+        prop="subType"
+        align="center"
+        min-width="80"
+        show-overflow-tooltip
+        label="分包类型">
+      </el-table-column>
+      <el-table-column
+        prop="packageType"
+        align="center"
+        min-width="80"
+        show-overflow-tooltip
+        label="包件类型">
+      </el-table-column>
+      <el-table-column
+        prop="time1"
         align="center"
         min-width="110"
         show-overflow-tooltip
-        label="工程类型">
+        label="拟招标日期">
       </el-table-column>
       <el-table-column
         align="center"
-        label="合同额（万元）">
+        label="金额">
         <el-table-column
           prop="contractValue1"
           header-align="center"
@@ -75,28 +97,55 @@
           align="right"
           min-width="150"
           show-overflow-tooltip
+          label="拟分包总额">
+        </el-table-column>
+        <el-table-column
+          prop="contractValue3"
+          header-align="center"
+          align="right"
+          min-width="150"
+          show-overflow-tooltip
           label="拟分包额">
         </el-table-column>
+      </el-table-column>
+      <el-table-column
+        prop="moneyType"
+        header-align="center"
+        min-width="100"
+        show-overflow-tooltip
+        label="币种">
       </el-table-column>
       <el-table-column
         prop="unit"
         header-align="center"
         min-width="100"
         show-overflow-tooltip
-        label="编制单位">
+        label="需求单位">
       </el-table-column>
       <el-table-column
-        prop="department"
-        header-align="center"
-        min-width="100"
-        show-overflow-tooltip
-        label="编制部门">
-      </el-table-column>
-      <el-table-column
-        prop="createTime"
+        prop="engineerType"
         align="center"
-        min-width="110"
-        label="编制时间">
+        min-width="80"
+        show-overflow-tooltip
+        label="工程类型">
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="执行进度">
+        <el-table-column
+          prop="progressLink"
+          align="center"
+          min-width="80"
+          show-overflow-tooltip
+          label="进展环节">
+        </el-table-column>
+        <el-table-column
+          prop="progressStatus"
+          align="center"
+          min-width="80"
+          show-overflow-tooltip
+          label="进展状态">
+        </el-table-column>
       </el-table-column>
     </el-table>
     <div class="page fr" v-if="total">
@@ -123,10 +172,34 @@ export default {
       pageNum: 1, // 当前第几页
       total: 2, // 总页数
       currentSize: 2, // 当前页数据条数
-      tableList: [{objectId: '1', objectName: '雄安公路', engineerType: '公路', contractValue1: '99,999.66', contractValue2: '66,666.99', unit: '二公司', department: '合同部', createTime: '2019-05-01'}, {objectId: '2', objectName: '雄安铁路', engineerType: '铁路', contractValue1: '99,998.66', contractValue2: '66,666.99', unit: '二公司', department: '合同部', createTime: '2019-05-01'}] // 列表
+      tableList: [{objectId: '1', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '2', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '2', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}] // 列表
     }
   },
   methods: {
+    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
+      if (rowIndex === 1) {
+        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+          return [2, 1]
+        }
+      }
+      if (rowIndex === 2) {
+        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+          return [0, 0]
+        }
+      }
+      if (rowIndex === 3) {
+        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+          return [4, 1]
+        } else {
+          // return [0, 1]
+        }
+      }
+      if (rowIndex === 4 || rowIndex === 5 || rowIndex === 6 || rowIndex === 7) {
+        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+          return [0, 0]
+        }
+      }
+    },
     // 查看详情
     detail (isApproval) {
       // 到详情页面
