@@ -3,7 +3,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>分包策划管理</el-breadcrumb-item>
-      <el-breadcrumb-item>分包策划列表</el-breadcrumb-item>
+      <el-breadcrumb-item>分包策划台账</el-breadcrumb-item>
     </el-breadcrumb>
     <!--搜索-->
     <el-form :inline="true" size="mini" class="searchData">
@@ -107,6 +107,14 @@
           show-overflow-tooltip
           label="拟分包额">
         </el-table-column>
+        <el-table-column
+          prop="contractValue4"
+          header-align="center"
+          align="right"
+          min-width="150"
+          show-overflow-tooltip
+          label="中标额">
+        </el-table-column>
       </el-table-column>
       <el-table-column
         prop="moneyType"
@@ -170,32 +178,31 @@ export default {
       },
       pageSize: 10, // 每页条数
       pageNum: 1, // 当前第几页
-      total: 2, // 总页数
-      currentSize: 2, // 当前页数据条数
-      tableList: [{objectId: '1', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '2', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '2', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '9,999.99', contractValue2: '5,555.55', contractValue3: '222.22', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}] // 列表
+      total: 7, // 总条数
+      currentSize: 7, // 当前页数据条数
+      tableList: [{objectId: '1', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '99,999.66', contractValue2: '99,999.66', contractValue3: '66,666.99', contractValue4: '', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '2', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '856,231.56', contractValue2: '856,231.56', contractValue3: '10,000.00', contractValue4: '80,000.00', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '招标方案', progressStatus: '已定标'}, {objectId: '2', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '856,231.56', contractValue2: '856,231.56', contractValue3: '75,000.00', contractValue4: '', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '985,462.23', contractValue2: '985,462.23', contractValue3: '150,00.00', contractValue4: '136,000.00', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '招标方案', progressStatus: '已定标'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '985,462.23', contractValue2: '985,462.23', contractValue3: '200,000.00', contractValue4: '', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '985,462.23', contractValue2: '985,462.23', contractValue3: '65,000.00', contractValue4: '', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}, {objectId: '3', objectName: '雄安公路', PackageNo: 'ABCDEFJ0001', subType: '专业分包', packageType: '临建', time1: '2019-05-01', contractValue1: '985,462.23', contractValue2: '985,462.23', contractValue3: '130,000.00', contractValue4: '', moneyType: '人民币', unit: '二航局', engineerType: '公路', progressLink: '分包策划', progressStatus: '准备中'}] // 列表
     }
   },
   methods: {
     arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
+      debugger
       if (rowIndex === 1) {
-        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+        if (column.property === 'objectId' || column.property === 'objectName' || column.property === 'contractValue1' || column.property === 'contractValue2' || column.property === 'moneyType') {
           return [2, 1]
         }
       }
       if (rowIndex === 2) {
-        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+        if (column.property === 'objectId' || column.property === 'objectName' || column.property === 'contractValue1' || column.property === 'contractValue2' || column.property === 'moneyType') {
           return [0, 0]
         }
       }
       if (rowIndex === 3) {
-        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+        if (column.property === 'objectId' || column.property === 'objectName' || column.property === 'contractValue1' || column.property === 'contractValue2' || column.property === 'moneyType') {
           return [4, 1]
-        } else {
-          // return [0, 1]
         }
       }
       if (rowIndex === 4 || rowIndex === 5 || rowIndex === 6 || rowIndex === 7) {
-        if (columnIndex === 1 || columnIndex === 2 || columnIndex === 7 || columnIndex === 8 || columnIndex === 10 || columnIndex === 11) {
+        if (column.property === 'objectId' || column.property === 'objectName' || column.property === 'contractValue1' || column.property === 'contractValue2' || column.property === 'moneyType') {
           return [0, 0]
         }
       }
