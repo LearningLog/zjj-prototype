@@ -185,7 +185,6 @@ export default {
   },
   methods: {
     arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
-      debugger
       if (rowIndex === 1) {
         if (column.property === 'objectId' || column.property === 'objectName' || column.property === 'contractValue1' || column.property === 'contractValue2' || column.property === 'moneyType') {
           return [2, 1]
